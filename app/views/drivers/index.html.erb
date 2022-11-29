@@ -1,0 +1,7 @@
+<p><a href="/">Home</a></p>
+
+<h1>All Drivers</h1>
+
+<% @drivers.each do |driver| %>
+  <h2><a href="/drivers/<%= driver.id %>"><%= driver.name %></a></h2>
+<% end %>

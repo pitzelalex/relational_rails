@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_28_215928) do
+ActiveRecord::Schema.define(version: 2022_11_29_213324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drivers", force: :cascade do |t|
+    t.integer "team_id"
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean "superlicense"
+    t.string "previous_series"
+    t.integer "race_wins_in_series"
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
