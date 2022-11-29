@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get '/', to: 'welcome#index'
   get '/teams', to: 'teams#index'
+  get '/teams/:id', to: 'teams#show'
 end

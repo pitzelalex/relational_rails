@@ -1,6 +1,7 @@
+<p><a href="/">Home</a></p>
+
 <h1>All Teams</h1>
 
 <% @teams.each do |team| %>
-  <h2><%= team.name %></h2>
-  <p><b>Created At:</b> <%= team.created_at %> <b>| Updated At:</b> <%= team.updated_at %> <b>| Has Won a Championship?</b> <%= team.champion %> <b>| Number of Race Wins:</b> <%= team.race_wins %></p>
+  <h2><a href="/teams/<%= team.id %>"><%= team.name %></a></h2>
 <% end %>
