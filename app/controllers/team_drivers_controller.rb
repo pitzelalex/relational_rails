@@ -1,0 +1,6 @@
+class TeamDriversController < ApplicationController
+  def index
+    @drivers = Driver.where(team_id: params[:team_id])
+    @team = Team.find(params[:team_id])
+  end
+end

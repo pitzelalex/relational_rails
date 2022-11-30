@@ -7,5 +7,6 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @drivers = Driver.all
   end
 end

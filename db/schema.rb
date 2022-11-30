@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_29_213324) do
+ActiveRecord::Schema.define(version: 2022_11_30_015123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "drivers", force: :cascade do |t|
-    t.integer "team_id"
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "superlicense"
     t.string "previous_series"
     t.integer "race_wins_in_series"
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_drivers_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -33,4 +34,5 @@ ActiveRecord::Schema.define(version: 2022_11_29_213324) do
     t.integer "race_wins"
   end
 
+  add_foreign_key "drivers", "teams"
 end
