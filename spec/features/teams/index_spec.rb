@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'teams index page', type: :feature do
   describe 'As a visitor' do
     it "I visit '/teams" do
-      team1 = Team.create(name: 'Red Bull', champion: true, race_wins: 92)
-      team2 = Team.create(name: 'Ferrari', champion: true, race_wins: 242)
-      team3 = Team.create(name: 'Mercedes', champion: true, race_wins: 125)
+      team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+      team2 = Team.create!(name: 'Ferrari', champion: true, race_wins: 242)
+      team3 = Team.create!(name: 'Mercedes', champion: true, race_wins: 125)
 
       visit '/teams'
 

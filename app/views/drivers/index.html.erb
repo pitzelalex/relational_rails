@@ -4,4 +4,13 @@
 
 <% @drivers.each do |driver| %>
   <h2><a href="/drivers/<%= driver.id %>"><%= driver.name %></a></h2>
+  <p>
+  <b>ID:</b> <%= driver.id %> <b>
+  - Team:</b> <%= driver.team.name %> <b>
+  - Created At:</b> <%= driver.created_at %> <b>
+  - Updated At:</b> <%= driver.updated_at %> <b>
+  - Has a Superlicense?</b> <%= driver.superlicense %> <b>
+  - Previously Raced In:</b> <%= driver.previous_series %> <b>
+  - Races Won In Series:</b> <%= driver.race_wins_in_series %>
+  </p>
 <% end %>

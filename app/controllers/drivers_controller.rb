@@ -2,6 +2,7 @@
 
 class DriversController < ApplicationController
   def index
+    # require 'pry'; binding.pry
     @drivers = Driver.all
   end
 
