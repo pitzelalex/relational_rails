@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'teams index page', type: :feature do
-  # For each parent table
-  # As a visitor
-  # When I visit '/parents'
-  # Then I see the name of each parent record in the system
-  describe 'For each parent table' do
-    describe 'As a visitor' do
-      it "I visit '/teams" do
-        team1 = Team.create(name: 'Red Bull', champion: true, race_wins: 92)
-        driver1 = Driver.create(name: 'Sergio Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4, team_id: team1)
+  describe 'As a visitor' do
+    it "I visit '/teams" do
+      team1 = Team.create(name: 'Red Bull', champion: true, race_wins: 92)
+      team2 = Team.create(name: 'Ferrari', champion: true, race_wins: 242)
+      team3 = Team.create(name: 'Mercedes', champion: true, race_wins: 125)
 
-        visit '/teams'
-      end
+      visit '/teams'
+
+      expect(page).to have_content(team1.name)
+      expect(page).to have_content(team2.name)
+      expect(page).to have_content(team3.name)
     end
   end
 end
