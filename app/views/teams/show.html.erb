@@ -7,3 +7,6 @@
 - Has Won a Championship?</b> <%= @team.champion %> <b>
 - Number of Race Wins:</b> <%= @team.race_wins %>
 </p>
+<p>Number of Drivers: <%= @team.driver_count %></p>
+</br>
+<a href="/teams/<%= @team.id %>/drivers">Drivers</a>
