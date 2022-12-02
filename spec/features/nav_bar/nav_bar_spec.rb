@@ -12,6 +12,16 @@ RSpec.describe 'navigation bar on every page', type: :feature do
         visit "/teams/#{team1.id}"
         expect(page).to have_selector(:link_or_button, 'Drivers')
       end
+
+      it 'has a link to teams' do
+        team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        visit "/drivers"
+        expect(page).to have_selector(:link_or_button, 'Teams')
+        visit "/teams"
+        expect(page).to have_selector(:link_or_button, 'Teams')
+        visit "/teams/#{team1.id}"
+        expect(page).to have_selector(:link_or_button, 'Teams')
+      end
     end
   end
 end
