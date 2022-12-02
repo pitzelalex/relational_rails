@@ -12,6 +12,7 @@ RSpec.describe 'teams index page', type: :feature do
       expect(page).to have_content(team1.name)
       expect(page).to have_content(team2.name)
       expect(page).to have_content(team3.name)
+      expect(page).to have_selector(:link_or_button, 'Create New Team')
     end
   end
 end
