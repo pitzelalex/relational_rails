@@ -39,6 +39,24 @@ RSpec.describe 'teams view page', type: :feature do
         visit "/teams/#{team3.id}"
         expect(page).to have_content("Number of Drivers: #{Driver.where(team_id: team3.id).count}")
       end
+
+      it 'has a link to teams drivers' do
+        team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        team2 = Team.create!(name: 'Ferrari', champion: true, race_wins: 242)
+        team3 = Team.create!(name: 'Mercedes', champion: true, race_wins: 125)
+
+        visit "/teams/#{team1.id}"
+        expect(page).to have_selector(:link_or_button, "#{team1.name} Drivers")
+        expect(find_link("#{team1.name} Drivers")[:href]).to eq("/teams/#{team1.id}/drivers")
+
+        visit "/teams/#{team2.id}"
+        expect(page).to have_selector(:link_or_button, "#{team2.name} Drivers")
+        expect(find_link("#{team2.name} Drivers")[:href]).to eq("/teams/#{team2.id}/drivers")
+
+        visit "/teams/#{team3.id}"
+        expect(page).to have_selector(:link_or_button, "#{team3.name} Drivers")
+        expect(find_link("#{team3.name} Drivers")[:href]).to eq("/teams/#{team3.id}/drivers")
+      end
     end
   end
 end
