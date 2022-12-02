@@ -9,4 +9,8 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @drivers = Driver.all
   end
+
+  def new
+    
+  end
 end
