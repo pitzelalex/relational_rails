@@ -10,6 +10,7 @@ RSpec.describe 'teams new page' do
         expect(page).to have_field('teamname')
         expect(page).to have_field('championship')
         expect(page).to have_field('racewins')
+        expect(page).to have_selector('input[type=submit]')
       end
     end
   end
