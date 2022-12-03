@@ -13,6 +13,14 @@ RSpec.describe 'teams index page', type: :feature do
       expect(page).to have_content(team2.name)
       expect(page).to have_content(team3.name)
       expect(page).to have_selector(:link_or_button, 'Create New Team')
+      expect(find_link('Create New Team')[:href]).to eq('/teams/new')
+    end
+
+    it "clicks on 'Create New Team" do
+      visit '/teams'
+      click_on 'Create New Team'
+
+      expect(page).to have_current_path('/teams/new')
     end
   end
 end
