@@ -60,17 +60,25 @@ RSpec.describe 'teams view page', type: :feature do
         expect(find_link("#{team3.name} Drivers")[:href]).to eq("/teams/#{team3.id}/drivers")
       end
 
-      it 'has an edit button that takes the user to the edit page' do
-        team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+      describe 'has an edit button that takes the user to the edit page' do
+        it 'exists' do
+          team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
 
-        visit "/teams/#{team1.id}"
+          visit "/teams/#{team1.id}"
 
-        expect(page).to have_selector(:link_or_button, 'Update Team')
-        expect(find_link('Update Team')[:href]).to eq("/teams/#{team1.id}/edit")
+          expect(page).to have_selector(:link_or_button, 'Update Team')
+          expect(find_link('Update Team')[:href]).to eq("/teams/#{team1.id}/edit")
+        end
 
-        click_on 'Update Team'
+        it 'takes the user to the edit page' do
+          team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
 
-        expect(page).to have_current_path("/teams/#{team1.id}/edit")
+          visit "/teams/#{team1.id}"
+
+          click_on 'Update Team'
+
+          expect(page).to have_current_path("/teams/#{team1.id}/edit")
+        end
       end
     end
   end
