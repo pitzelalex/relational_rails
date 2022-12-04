@@ -1,0 +1,56 @@
+<style>
+  .flex-container {
+      display: flex;
+  }
+
+  .flex-child {
+      /* flex: 1; */
+      width: 20%;
+      text-align: left;
+  }  
+
+  .flex-child:first-child {
+  } 
+</style>
+
+<h1>Create A New Team</h1>
+
+<form action="/teams" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  
+  <div class="flex-container">
+
+    <div class="flex-child">
+      <label for="teamname">Enter Team Name:</label>
+    </div>
+
+    <div class="flex-child">
+      <input type="text" id='teamname' name='teamname'><br>
+    </div>
+
+  </div>
+
+  <div class="flex-container">
+
+    <div class="flex-child">
+      <label for="championship">Check if team has won a championship:</label>
+    </div>
+
+    <div class="flex-child">
+      <input type="checkbox" id="championship" name="championship" value="true"><br>
+    </div>
+
+  </div>
+
+  <div class="flex-container">
+
+    <div class="flex-child">
+      <label for="racewins">Enter number of race wins:</label><br>
+    </div>
+
+    <div class="flex-child">
+      <input type="number" id="racewins" name="racewins">
+    </div>
+  </div>
+  <input type="submit">
+</form>
