@@ -28,4 +28,8 @@ class TeamsController < ApplicationController
 
     redirect_to '/teams'
   end
+
+  def edit
+    
+  end
 end
