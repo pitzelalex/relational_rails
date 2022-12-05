@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-
 RSpec.describe 'team_drivers index page', type: :feature do
   describe 'as a visitor' do
     it "when I visit '/teams/:team_id/drivers" do
@@ -46,6 +42,15 @@ RSpec.describe 'team_drivers index page', type: :feature do
       expect(page).to have_content(driver3.superlicense)
       expect(page).to have_content(driver3.previous_series)
       expect(page).to have_content(driver3.race_wins_in_series)
+    end
+
+    it "has a link to create a new driver for that team" do
+      team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+
+      visit "/teams/#{team1.id}/drivers"
+
+      expect(page).to have_selector(:link_or_button, 'Create Driver')
+      expect(find_link('Create Driver')[:href]).to eq('/drivers/new')
     end
   end
 end
