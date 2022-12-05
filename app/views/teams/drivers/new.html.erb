@@ -1,0 +1,13 @@
+<h2>Create A New Driver For <%= @team.name %></h2>
+
+<%= form_with url: "/teams/#{@team.id}/drivers", method: :post, local: true do |form| %>
+  <%= form.label 'Name:' %>
+  <%= form.text_field :name %> <br>
+  <%= form.label 'Has a Superlicense?' %>
+  <%= form.check_box :superlicense %> <br>
+  <%= form.label 'Previous Series:' %>
+  <%= form.select :previous_series, [ 'F1', 'F2', 'F3', 'W Series', 'GT', 'WEC', 'WRC' ], :prompt => 'Select One' %> 
+  <%= form.label 'Race Wins in Formula 1:' %>
+  <%= form.number_field :race_wins_in_series %> <br>
+  <%= form.submit %>
+<% end %>
