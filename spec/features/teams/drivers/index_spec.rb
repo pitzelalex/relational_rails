@@ -50,7 +50,11 @@ RSpec.describe 'team_drivers index page', type: :feature do
       visit "/teams/#{team1.id}/drivers"
 
       expect(page).to have_selector(:link_or_button, 'Create Driver')
-      expect(find_link('Create Driver')[:href]).to eq('/drivers/new')
+      expect(find_link('Create Driver')[:href]).to eq("/teams/#{team1.id}/drivers/new")
+
+      click_on click_on 'Create New Team'
+
+      expect(page).to have_current_path("/teams/#{team1.id}/drivers/new")
     end
   end
 end
