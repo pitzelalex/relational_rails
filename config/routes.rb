@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/teams/:team_id/drivers', to: 'teams/drivers#index'
   get '/drivers', to: 'drivers#index'
   get '/drivers/:id', to: 'drivers#show'
+  patch '/teams/:id', to: 'teams#update'
 end

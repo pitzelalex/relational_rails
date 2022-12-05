@@ -1,0 +1,11 @@
+<h1>Edit <%= @team.name %></h1>
+
+<%= form_with url: "/teams/#{@team.id}", method: :patch, local: true do |form| %>
+  <%= form.label 'Name:' %>
+  <%= form.text_field :name, value: "#{@team.name}" %> <br>
+  <%= form.label 'Championship Winner?' %>
+  <%= form.check_box :champion, checked: @team.champion %> <br>
+  <%= form.label 'Race Wins:' %>
+  <%= form.number_field :race_wins, value: "#{@team.race_wins.to_i}" %> <br>
+  <%= form.submit %>
+<% end %>
