@@ -5,6 +5,6 @@ class Teams::DriversController < ApplicationController
   end
 
   def new
-    
+    @team = Team.find(params[:team_id])
   end
 end
