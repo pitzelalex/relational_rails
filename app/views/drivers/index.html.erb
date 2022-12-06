@@ -13,4 +13,5 @@
   - Previously Raced In:</b> <%= driver.previous_series %> <b>
   - Races Won In Series:</b> <%= driver.race_wins_in_series %>
   </p>
+  <%= link_to "Edit", "/drivers/#{driver.id}/edit" %>
 <% end %>
