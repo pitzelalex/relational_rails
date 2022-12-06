@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch '/teams/:id', to: 'teams#update'
   get '/teams/:id/edit', to: 'teams#edit'
   get '/teams/:team_id/drivers', to: 'teams/drivers#index'
+  post '/teams/:team_id/drivers', to: 'teams/drivers#new'
   get '/teams/:team_id/drivers/new', to: 'teams/drivers#new'
 
   get '/drivers', to: 'drivers#index'
