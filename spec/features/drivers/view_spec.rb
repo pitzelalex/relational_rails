@@ -40,5 +40,28 @@ RSpec.describe 'drivers view page', type: :feature do
       expect(page).to have_content(driver3.previous_series)
       expect(page).to have_content(driver3.race_wins_in_series)
     end
+
+    describe 'has an edit button that takes the user to the edit page' do
+      it 'exists' do
+        team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        driver = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+        visit "/drivers/#{driver.id}"
+
+        expect(page).to have_selector(:link_or_button, 'Update Diver')
+        expect(find_link('Update Driver')[:href]).to eq("/drivers/#{driver.id}/edit")
+      end
+
+      it 'takes the user to the edit page' do
+        team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        driver = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+        visit "/drivers/#{driver.id}"
+
+        click_on 'Update Driver'
+
+        expect(page).to have_current_path("/drivers/#{driver.id}/edit")
+      end
+    end
   end
 end
