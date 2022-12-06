@@ -1,6 +1,7 @@
 <p><a href="/">Home</a></p>
 
-<h1><%= @team.name %> Drivers</h1>
+<h1><%= @team.name %> Drivers</h1><br>
+<%= link_to 'Create Driver', "/teams/#{@team.id}/drivers/new" %>
 
 <% @drivers.each do |driver| %>
   <h2><a href="/drivers/<%= driver.id %>"><%= driver.name %></a></h2>
