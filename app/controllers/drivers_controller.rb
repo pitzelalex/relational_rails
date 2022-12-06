@@ -2,7 +2,7 @@
 
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers = Driver.all_true
   end
 
   def show
