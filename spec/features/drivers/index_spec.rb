@@ -36,5 +36,17 @@ RSpec.describe 'drivers index page', type: :feature do
       expect(page).to have_content(driver3.previous_series)
       expect(page).to have_content(driver3.race_wins_in_series)
     end
+
+    it 'only shows drivers with superlicenses' do
+      team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+
+      driver1 = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+      driver2 = team.drivers.create!(name: 'Leclerc', superlicense: false, previous_series: 'F1', race_wins_in_series: 5)
+
+      visit '/drivers'
+
+      expect(page).to have_content(driver1.name)
+      expect(page).not_to have_content(driver2.name)
+    end
   end
 end
