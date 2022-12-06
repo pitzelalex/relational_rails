@@ -1,7 +1,11 @@
 class Teams::DriversController < ApplicationController
   def index
-    @drivers = Driver.where(team_id: params[:team_id])
     @team = Team.find(params[:team_id])
+    if params[:sort] == 'name'
+      @drivers = @team.drivers.order(:name)
+    else
+      @drivers = @team.drivers
+    end
   end
 
   def new
@@ -17,7 +21,8 @@ class Teams::DriversController < ApplicationController
     redirect_to "/teams/#{team.id}/drivers"
   end
 
-  private 
+  private
+
   def driver_params
     params.permit(:name, :superlicense, :previous_series, :race_wins_in_series)
   end
