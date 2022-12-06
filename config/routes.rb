@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   get '/teams/:team_id/drivers', to: 'teams/drivers#index'
   post '/teams/:team_id/drivers', to: 'teams/drivers#create'
   get '/teams/:team_id/drivers/new', to: 'teams/drivers#new'
-
+  
   get '/drivers', to: 'drivers#index'
   get '/drivers/:id', to: 'drivers#show'
   patch '/drivers/:id', to: 'drivers#update'
   get 'drivers/:id/edit', to: 'drivers#edit'
+  delete '/drivers/:id', to: 'drivers#destroy'
 end
