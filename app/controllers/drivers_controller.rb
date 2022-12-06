@@ -19,6 +19,12 @@ class DriversController < ApplicationController
     redirect_to "/drivers/#{driver.id}"
   end
 
+  def destroy
+    driver = Driver.find(params[:id])
+    driver.destroy!
+    redirect_to '/drivers'
+  end
+
   private
 
   def driver_params
