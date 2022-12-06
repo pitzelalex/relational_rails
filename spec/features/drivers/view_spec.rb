@@ -63,5 +63,31 @@ RSpec.describe 'drivers view page', type: :feature do
         expect(page).to have_current_path("/drivers/#{driver.id}/edit")
       end
     end
+
+    describe 'has a delete button' do
+      it 'exists' do
+        team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        driver = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+        visit "/drivers/#{driver.id}/"
+
+        expect(page).to have_selector(:link_or_button, 'Delete Driver')
+        expect(find_link('Delete Driver')[:href]).to eq("/drivers/#{driver.id}")
+      end
+
+      it 'deletes the team' do
+        team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+        driver = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+        visit "/drivers/#{driver.id}"
+
+        expect(page).to have_content(driver.name)
+
+        click_on 'Delete Driver'
+
+        expect(page).to have_current_path('/drivers')
+        expect(page).not_to have_content(driver.name)
+      end
+    end
   end
 end
