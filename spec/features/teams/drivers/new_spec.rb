@@ -35,7 +35,8 @@ RSpec.describe 'teams/drivers new page' do
       expect(Driver.last.name).to eq('Crash Test Dummy')
       expect(Driver.last.superlicense).to be true
       expect(Driver.last.previous_series).to eq('F1')
-      expect(Driver.last.race_wins_in_series).to eq('69')
+      expect(Driver.last.race_wins_in_series).to eq(69)
+      expect(page).to have_content('Crash Test Dummy')
     end
   end
 end
