@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   get '/drivers', to: 'drivers#index'
   get '/drivers/:id', to: 'drivers#show'
+  get 'drivers/:id/edit', to: 'drivers#edit'
 end
