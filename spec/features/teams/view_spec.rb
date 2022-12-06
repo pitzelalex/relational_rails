@@ -80,6 +80,32 @@ RSpec.describe 'teams view page', type: :feature do
           expect(page).to have_current_path("/teams/#{team1.id}/edit")
         end
       end
+
+      describe 'has a delete button' do
+        it 'exists' do
+          team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+
+          visit "/teams/#{team.id}"
+
+          expect(page).to have_selector(:link_or_button, 'Delete Team')
+          expect(find_link('Delete Team')[:href]).to eq("/teams/#{team.id}")
+        end
+
+        it 'deletes the team' do
+          team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+          team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+          team.drivers.create!(name: 'Leclerc', superlicense: true, previous_series: 'F1', race_wins_in_series: 5)
+
+          visit "/teams/#{team.id}"
+
+          expect(page).to have_content(team.name)
+
+          click_on 'Delete Team'
+
+          expect(page).to have_current_path('/teams')
+          expect(page).not_to have_content(team.name)
+        end
+      end
     end
   end
 end

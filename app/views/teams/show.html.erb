@@ -9,5 +9,8 @@
 </p>
 <p>Number of Drivers: <%= @team.driver_count %></p>
 </br>
-<%= link_to "Update Team", "/teams/#{@team.id}/edit" %> <br>
+<p>
+<%= link_to "Update Team", "/teams/#{@team.id}/edit" %>
+<%= link_to "Delete Team", "/teams/#{@team.id}", method: :delete %>
+</p>
 <a href="/teams/<%= @team.id %>/drivers"><%= @team.name %> Drivers</a>
