@@ -17,11 +17,11 @@ RSpec.describe 'drivers edit page', type: :feature do
       expect(page).to have_selector('input[type=submit]')
     end
 
-    xit 'updates the driver' do
+    it 'updates the driver' do
       team = Team.create!(name: 'Red Bull', champion: false, race_wins: 92)
       driver = team.drivers.create!(name: 'Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
 
-      visit "/drivers/#{driver.id}/edit"
+      visit "/drivers/#{driver.id}"
 
       expect(page).to have_content('Perez')
       expect(page).to have_content('Has a Superlicense? true')
