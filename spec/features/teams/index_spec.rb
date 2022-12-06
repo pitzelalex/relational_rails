@@ -42,9 +42,9 @@ RSpec.describe 'teams index page', type: :feature do
 
       visit '/teams'
 
-      expect(page).to have_link("Delete", href: "/teams/#{team1.id}/delete")
-      expect(page).to have_link("Delete", href: "/teams/#{team2.id}/delete")
-      expect(page).to have_link("Delete", href: "/teams/#{team3.id}/delete")
+      expect(page).to have_link("Delete", href: "/teams/#{team1.id}")
+      expect(page).to have_link("Delete", href: "/teams/#{team2.id}")
+      expect(page).to have_link("Delete", href: "/teams/#{team3.id}")
     end
   end
 end
