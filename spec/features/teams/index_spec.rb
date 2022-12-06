@@ -46,5 +46,31 @@ RSpec.describe 'teams index page', type: :feature do
       expect(page).to have_link("Delete", href: "/teams/#{team2.id}")
       expect(page).to have_link("Delete", href: "/teams/#{team3.id}")
     end
+
+    it 'deletes the team' do
+      team1 = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+      team2 = Team.create!(name: 'Ferrari', champion: true, race_wins: 242, created_at: Time.now - 2.days)
+      team3 = Team.create!(name: 'Mercedes', champion: true, race_wins: 125, created_at: Time.now - 4.days)
+
+      visit '/teams'
+      expect(page).to have_content(team1.name)
+      expect(page).to have_content(team2.name)
+      expect(page).to have_content(team3.name)
+      click_link('Delete', href: "/teams/#{team1.id}")
+      expect(page).to have_current_path('/teams')
+      expect(page).not_to have_content(team1.name)
+      expect(page).to have_content(team2.name)
+      expect(page).to have_content(team3.name)
+      click_link('Delete', href: "/teams/#{team2.id}")
+      expect(page).to have_current_path('/teams')
+      expect(page).not_to have_content(team1.name)
+      expect(page).not_to have_content(team2.name)
+      expect(page).to have_content(team3.name)
+      click_link('Delete', href: "/teams/#{team3.id}")
+      expect(page).to have_current_path('/teams')
+      expect(page).not_to have_content(team1.name)
+      expect(page).not_to have_content(team2.name)
+      expect(page).not_to have_content(team3.name)
+    end
   end
 end
