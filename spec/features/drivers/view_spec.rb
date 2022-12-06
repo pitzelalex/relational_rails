@@ -48,7 +48,7 @@ RSpec.describe 'drivers view page', type: :feature do
 
         visit "/drivers/#{driver.id}"
 
-        expect(page).to have_selector(:link_or_button, 'Update Diver')
+        expect(page).to have_selector(:link_or_button, 'Update Driver')
         expect(find_link('Update Driver')[:href]).to eq("/drivers/#{driver.id}/edit")
       end
 

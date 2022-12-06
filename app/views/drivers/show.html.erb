@@ -1,6 +1,7 @@
 <a href="/drivers">Drivers Index</a>
 
-<h1><%= @driver.name %></h1>
+<h1><%= @driver.name %></h1><br>
+<%= link_to 'Update Driver', "/drivers/#{@driver.id}/edit" %>
 <p>
 <b>ID:</b> <%= @driver.id %> <b>
 - Team:</b> <%= @driver.team.name %> <b>
