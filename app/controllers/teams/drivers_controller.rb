@@ -1,8 +1,8 @@
 class Teams::DriversController < ApplicationController
   def index
     @team = Team.find(params[:team_id])
-    if params[:sort] == 'name'
-      @drivers = @team.drivers.order(:name)
+    if params[:sort]
+      @drivers = @team.drivers.order(params[:sort])
     else
       @drivers = @team.drivers
     end
