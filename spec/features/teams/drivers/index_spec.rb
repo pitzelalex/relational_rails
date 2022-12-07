@@ -73,5 +73,45 @@ RSpec.describe 'team_drivers index page', type: :feature do
       expect(driver2.name).to appear_before(driver1.name)
       expect(driver1.name).to appear_before(driver3.name)
     end
+
+    it 'has a button to filter by drivers above x wins' do
+      team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+      driver3 = team.drivers.create!(name: 'Fernando Alonso', superlicense: true, previous_series: 'F1', race_wins_in_series: 5)
+      driver2 = team.drivers.create!(name: 'Charles Leclerc', superlicense: true, previous_series: 'F1', race_wins_in_series: 5)
+      driver1 = team.drivers.create!(name: 'Checo Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+      visit "/teams/#{team.id}/drivers"
+
+      expect(page).to have_content('Filter by Minimum Wins:')
+      expect(page).to have_field('wins')
+      expect(page).to have_selector('input[type=submit]')
+    end
+
+    it 'filters the drivers above x wins' do
+      team = Team.create!(name: 'Red Bull', champion: true, race_wins: 92)
+      driver1 = team.drivers.create!(name: 'Fernando Alonso', superlicense: true, previous_series: 'F1', race_wins_in_series: 6)
+      driver2 = team.drivers.create!(name: 'Charles Leclerc', superlicense: true, previous_series: 'F1', race_wins_in_series: 5)
+      driver3 = team.drivers.create!(name: 'Checo Perez', superlicense: true, previous_series: 'F1', race_wins_in_series: 4)
+
+      visit "/teams/#{team.id}/drivers"
+
+      expect(page).to have_content(driver1.name)
+      expect(page).to have_content(driver2.name)
+      expect(page).to have_content(driver3.name)
+
+      fill_in 'wins', :with => '5'
+      find('input[type=submit]').click
+
+      expect(page).to have_content(driver1.name)
+      expect(page).to have_content(driver2.name)
+      expect(page).not_to have_content(driver3.name)
+
+      fill_in 'wins', :with => '6'
+      find('input[type=submit]').click
+
+      expect(page).to have_content(driver1.name)
+      expect(page).not_to have_content(driver2.name)
+      expect(page).not_to have_content(driver3.name)
+    end
   end
 end
