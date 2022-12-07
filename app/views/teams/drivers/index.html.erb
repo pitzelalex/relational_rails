@@ -1,8 +1,15 @@
 <p><a href="/">Home</a></p>
 
 <h1><%= @team.name %> Drivers</h1><br>
-<%= link_to 'Create Driver', "/teams/#{@team.id}/drivers/new" %> <br>
-<%= link_to 'Sort by Name', "/teams/#{@team.id}/drivers?sort=name" %>
+<p>
+<%= form_with url: "#{request.url}", method: :get, local: true do |form| %>
+  <%= link_to 'Create Driver', "/teams/#{@team.id}/drivers/new" %>
+  <%= link_to 'Sort by Name', "/teams/#{@team.id}/drivers?sort=name" %> 
+  Filter by Minimum Wins:
+  <%= form.number_field :wins %>
+  <%= form.submit "filter"%>
+<% end %>
+</p>
 
 <% @drivers.each do |driver| %>
   <h2><a href="/drivers/<%= driver.id %>"><%= driver.name %></a></h2>

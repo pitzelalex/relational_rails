@@ -3,6 +3,8 @@ class Teams::DriversController < ApplicationController
     @team = Team.find(params[:team_id])
     if params[:sort]
       @drivers = @team.drivers.order(params[:sort])
+    elsif params[:wins]
+      @drivers = @team.drivers.where("race_wins_in_series >= #{params[:wins]}")
     else
       @drivers = @team.drivers
     end
